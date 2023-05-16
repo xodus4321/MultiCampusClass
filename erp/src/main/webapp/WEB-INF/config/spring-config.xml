@@ -19,6 +19,8 @@
 	<resources mapping="/common/css/**" location="/WEB-INF/static/common/css/" />
 	<!-- js -->
 	<resources mapping="/common/js/**" location="/WEB-INF/static/common/js/" />
+ 	<resources mapping="/upload/**" location="/WEB-INF/upload/" />
+	
 	<!-- jsp파일의 위치를 이용해서 뷰정보를 만들어내는 ViewResolver -->
 		
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->

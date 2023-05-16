@@ -87,12 +87,12 @@ public class BoardDAOImpl implements BoardDAO {
 	@Override
 	public List<BoardFileDTO> getFileList(String boardno) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectList("com.multi.erp.board.fileselect",boardno);
 	}
 	@Override
 	public BoardFileDTO getFile(BoardFileDTO inputdata) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSessionTemplate.selectOne("com.multi.erp.board.getfileinfo", inputdata);
 	}
 
 }

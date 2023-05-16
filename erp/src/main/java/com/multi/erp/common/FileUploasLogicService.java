@@ -1,4 +1,4 @@
-package com.multi.erp.board;
+package com.multi.erp.common;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.google.protobuf.Empty;
+import com.multi.erp.board.BoardFileDTO;
 @Service
 public class FileUploasLogicService {
 	//파일 업로드를 수행하는 메소드 정의 - 업로드듼 파일의 정보를 BoardFileDTO로 변환해서 리턴

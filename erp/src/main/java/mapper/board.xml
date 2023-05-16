@@ -6,6 +6,15 @@
 	 <!-- parameterType=>alias명 -->
  	 <!-- #{}으로 변수를 연결하면 preparedStatement의 ?와 연결 -->
  	 <!-- get빼고 소문자로 변경 ;적지않기 -->
+ 	 <select id="getfileinfo" parameterType="boardfile" resultType="boardfile">
+ 	 	select * from board_file where board_no=#{board_no} and boardFileno=#{boardFileno}
+ 	 </select>
+ 	 <select id="fileselect" parameterType="String" resultType="boardfile">
+		select * 
+        FROM board_file
+        WHERE board_no = #{boardno} 	 
+     </select>
+ 	
   	<insert id="fileinsert" parameterType="java.util.List">
   		insert into board_file values
   		<foreach collection="list" item="file" separator=",">
