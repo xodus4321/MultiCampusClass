@@ -9,7 +9,26 @@
 <meta charset="UTF-8">
 	<title>Insert title here</title>
 	<script type="text/javascript">
-		
+		$(document).ready(function () {
+			$(".deptno").on("click",function(){
+				$.ajx({
+					url : "/erp/emp/insert",
+					type:"get",
+					dataType : "json",
+					success : function(data) {
+						var printdata = "";
+						for (i = 0; i < data.length; i++) {
+							printdata+=data[i].deptno
+						}
+						$(".deptno").html(printdata)
+					},
+					error: error_run
+				})
+			})
+		})
+		function error_run(obj, msg, statusMsg) {
+			alert("오류발생~~~~" + obj + "," + msg + "," + statusMsg)
+	}
 	</script>
  </head>
 	
@@ -35,9 +54,13 @@
 					
 					<div class="form-group">
 						<!-- 부서코드 -->
+
 						<label class="control-label col-sm-2" for="orgcode">부서코드</label>
 						<div class="col-sm-3">
 							<select name="deptno" class="form-control" >
+								<c:forEach var="dept" items="deptlist">
+									<option value=>${dept.deptname }</option>	
+								</c:forEach>
 							</select>
 						</div>
 					</div>

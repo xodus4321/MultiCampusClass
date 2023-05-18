@@ -1,30 +1,46 @@
 package com.multi.erp.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import kr.multi.erp.dept.DeptDTO;
+import kr.multi.erp.dept.DeptService;
 
 
 @Controller
 @RequestMapping("/emp")
 public class MemberController {
 	MemberService service;
+	DeptService deptservice;
+
 	public MemberController() {
-		
 	}
 	@Autowired
-	public MemberController(MemberService service) {
+	public MemberController(MemberService service, DeptService deptservice) {
 		super();
 		this.service = service;
+		this.deptservice = deptservice;
 	}
 
-	
+	@RequestMapping(value = "/insert", produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public String insertPage(Model model) {
+		//DeptService를 등록하고 부서명을 register.jsp에서 사용할 수 있도록 attribute로 추가하기
+		List<DeptDTO> deptlist = deptservice.select();
+		model.addAttribute("deptlist", deptlist);
+		return "member/insertPage";
+	}
 	@RequestMapping(value = "/login.do", method= RequestMethod.GET )
 	  public String loginPage() {
 		  return "login";

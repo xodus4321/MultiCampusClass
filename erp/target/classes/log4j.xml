@@ -12,7 +12,8 @@
 	
 	<!-- Application Loggers -->
 	<logger name="com.multi.erp">
-		<level value="info" />
+		<level value="info" /> 
+		<!-- trace => 로그! -->
 	</logger>
 	
 	<!-- 3rdparty Loggers -->

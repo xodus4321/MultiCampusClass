@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.UriUtils;
@@ -135,7 +136,13 @@ public class BoardController {
 				.header(HttpHeaders.CONTENT_DISPOSITION,mycontenttype)
 				.body(resource);
 	}
-
+	//mainContent.jsp에서 ajax로 요청될 메소드
+	//=>category별 데이터만 조회해서 json Array로 response
+	@RequestMapping(value = "/board/ajax/list.do", produces = "application/json;charset=utf-8")
+	@ResponseBody
+	public List<BoardDTO> ajaxlist(String category){
+		return service.findByCategory(category);
+	}
 }
 
 

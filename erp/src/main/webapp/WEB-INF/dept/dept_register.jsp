@@ -1,10 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$(".deptno").on("click",function(){
+				$.ajax({
+					url : "/erp/dept/emp/insert",
+					type:"get",
+					dataType : "json",
+					success : function(data) {
+						var printdata = "";
+						for (i = 0; i < data.length; i++) {
+							printdata+=data[i].deptno
+						}
+						$(".deptno").html(printdata)
+					},
+					error: error_run
+				})
+			})
+		})
+		function error_run(obj, msg, statusMsg) {
+			alert("오류발생~~~~" + obj + "," + msg + "," + statusMsg)
+	}
+	</script>
 </head>
 <body>
 			<div class="col-lg-10">
